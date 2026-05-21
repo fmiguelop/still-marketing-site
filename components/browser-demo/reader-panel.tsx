@@ -80,10 +80,9 @@ export function ReaderPanel({
   initialProgress,
   interactive = true,
 }: ReaderPanelProps) {
-  const [themeState, setThemeState] = useState<ReaderTheme>(themeProp ?? 'light')
   const [scrollProgress, setScrollProgress] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const theme = themeProp ?? themeState
+  const theme = themeProp ?? 'light'
   const progress = initialProgress ?? scrollProgress
   const styles = THEME_STYLES[theme]
 
@@ -114,26 +113,6 @@ export function ReaderPanel({
         className="min-h-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6 sm:py-6"
       >
         <article className="mx-auto max-w-[70ch]">
-          {interactive && (
-            <div className="mb-4 flex flex-wrap items-center gap-2">
-              {THEME_OPTIONS.map((option) => (
-                <button
-                  key={option.value}
-                  type="button"
-                  onClick={() => setThemeState(option.value)}
-                  className={`rounded-md border px-2.5 py-1 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage ${
-                    theme === option.value
-                      ? `${styles.btnBg} ${styles.btnBorder} ${styles.btnLabel} border-current`
-                      : `border-transparent ${styles.muted} hover:opacity-80`
-                  }`}
-                  aria-pressed={theme === option.value}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-          )}
-
           <h2
             className={`mb-1.5 text-[1.75rem] font-bold leading-tight ${styles.title}`}
           >

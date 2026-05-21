@@ -22,7 +22,7 @@ type HeroCtasProps = {
 export function HeroCtas({ align = 'center', onTryStill }: HeroCtasProps) {
   const containerClass =
     align === 'start'
-      ? 'mt-10 flex flex-col items-start gap-4 sm:flex-row'
+      ? 'mt-9 flex flex-col items-start gap-4 sm:flex-row md:mt-10'
       : 'mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row'
 
   const tryStillButton = onTryStill ? (

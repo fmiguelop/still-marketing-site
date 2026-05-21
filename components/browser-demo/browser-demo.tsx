@@ -23,10 +23,11 @@ export type BrowserDemoHandle = {
 
 type BrowserDemoProps = {
   className?: string
+  frameClassName?: string
 }
 
 export const BrowserDemo = forwardRef<BrowserDemoHandle, BrowserDemoProps>(
-  function BrowserDemo({ className }, ref) {
+  function BrowserDemo({ className, frameClassName }, ref) {
     const [isReaderOpen, setIsReaderOpen] = useState(false)
     const [hasInteracted, setHasInteracted] = useState(false)
     const [readerKey, setReaderKey] = useState(0)
@@ -156,11 +157,14 @@ export const BrowserDemo = forwardRef<BrowserDemoHandle, BrowserDemoProps>(
           The following interactive preview is visual only and is not required to
           use Still.
         </p>
-        <div aria-hidden="true">
+        <div aria-hidden="true" className="w-full">
         <BrowserFrameStatic
           frameRef={frameRef}
           data-hero-shot
-          className="aspect-[16/10]"
+          className={
+            frameClassName ??
+            'aspect-[16/10]'
+          }
           isReaderOpen={isReaderOpen}
           onToggleReader={toggleReader}
           iconRef={iconRef}

@@ -66,7 +66,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body
+        className={`${inter.variable} overflow-x-hidden font-sans antialiased`}
+      >
         {children}
       </body>
     </html>

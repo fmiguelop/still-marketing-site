@@ -6,7 +6,7 @@ type KbdProps = {
 
 export function Kbd({ children }: KbdProps) {
   return (
-    <kbd className="rounded border border-still-border bg-still-paper px-1.5 py-0.5 font-sans text-sm text-still-ink">
+    <kbd className="inline-flex items-center rounded-md border border-still-border bg-still-paper-elevated px-2 py-0.5 font-sans text-sm font-medium text-still-ink shadow-[0_1px_0_rgba(26,26,24,0.06)]">
       {children}
     </kbd>
   )

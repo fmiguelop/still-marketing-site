@@ -45,7 +45,9 @@ export function BrowserFrameStatic({
         highlightIcon={highlightIcon}
         interactive={interactive}
       />
-      <div className="relative min-h-0 flex-1 overflow-hidden">{children}</div>
+      <div className="relative min-h-0 flex-1 basis-0 overflow-hidden">
+        {children}
+      </div>
     </div>
   )
 }

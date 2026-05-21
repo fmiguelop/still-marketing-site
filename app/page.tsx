@@ -10,9 +10,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <HomeStructuredData />
-      <Header />
-      <main>
+      <div className="flex min-h-dvh flex-col">
+        <Header />
         <HomeHero />
+      </div>
+      <main>
         <HowStillWorks />
         <PrivacyStrip />
       </main>
@@ -58,15 +60,22 @@ function HowStillWorks() {
       stagger
       className="border-y border-still-border bg-still-paper-elevated px-[clamp(1.5rem,5vw,2rem)] py-16 md:py-24"
     >
-      <div className="mx-auto max-w-[70ch] space-y-10">
+      <div className="mx-auto max-w-3xl space-y-16 md:space-y-20 lg:space-y-24">
         <div data-reveal-item>
-          <h2 className="mb-4 text-2xl font-bold text-still-ink">How it works</h2>
+          <h2 className="mb-6 text-2xl font-bold text-still-ink md:mb-8">
+            How it works
+          </h2>
           <HowItWorksIntro />
         </div>
 
-        <div data-reveal-item>
-          <h2 className="mb-4 text-2xl font-bold text-still-ink">What you get</h2>
-          <div className="space-y-4 text-lg leading-relaxed text-still-muted">
+        <div
+          data-reveal-item
+          className="border-t border-still-border/60 pt-16 md:pt-20"
+        >
+          <h2 className="mb-6 text-2xl font-bold text-still-ink md:mb-8">
+            What you get
+          </h2>
+          <div className="space-y-6 text-lg leading-relaxed text-still-muted md:space-y-7">
             <p>
               Install once. No account, no setup—just click when you want to read.
               Optional preferences in Options: light, dark, or warm theme; text
@@ -83,11 +92,14 @@ function HowStillWorks() {
           </div>
         </div>
 
-        <div data-reveal-item>
-          <h2 className="mb-4 text-2xl font-bold text-still-ink">
+        <div
+          data-reveal-item
+          className="border-t border-still-border/60 pt-16 md:pt-20"
+        >
+          <h2 className="mb-6 text-2xl font-bold text-still-ink md:mb-8">
             Common questions
           </h2>
-          <div className="space-y-6">
+          <div className="space-y-8 md:space-y-10">
             {faqItems.map((item) => (
               <div key={item.question}>
                 <h3 className="font-semibold text-still-ink">{item.question}</h3>
@@ -140,15 +152,19 @@ function PrivacyStrip() {
       className="px-[clamp(1.5rem,5vw,2rem)] py-12 md:py-16"
     >
       <div className="mx-auto max-w-[1120px]">
-        <dl className="space-y-6 md:space-y-8">
-          {privacyStripItems.map((item) => (
+        <dl>
+          {privacyStripItems.map((item, index) => (
             <div
               key={item.label}
               data-reveal-item
-              className="grid gap-2 md:grid-cols-[minmax(7rem,9rem)_1fr] md:gap-x-10"
+              className={`grid gap-2 py-5 md:grid-cols-[minmax(8rem,10rem)_1fr] md:gap-x-12 md:py-6 lg:gap-x-16 ${
+                index < privacyStripItems.length - 1
+                  ? 'border-b border-[rgba(0,0,0,0.06)]'
+                  : ''
+              }`}
             >
-              <dt className="font-semibold text-still-ink">{item.label}</dt>
-              <dd className="m-0 text-lg leading-relaxed text-still-muted">
+              <dt className="font-medium text-still-muted/90">{item.label}</dt>
+              <dd className="m-0 text-lg font-normal leading-relaxed text-still-ink">
                 {item.description}
               </dd>
             </div>
