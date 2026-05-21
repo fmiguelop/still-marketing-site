@@ -10,7 +10,7 @@ import {
 } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { BrowserChrome } from '@/components/browser-demo/browser-chrome'
+import { BrowserFrameStatic } from '@/components/browser-demo/browser-frame-static'
 import { ClutteredPage } from '@/components/browser-demo/cluttered-page'
 import { ReaderPanel } from '@/components/browser-demo/reader-panel'
 import { initGsap, prefersReducedMotion, STILL_EASE } from '@/lib/motion'
@@ -152,21 +152,23 @@ export const BrowserDemo = forwardRef<BrowserDemoHandle, BrowserDemoProps>(
 
     return (
       <div className={className}>
-        <div
-          ref={frameRef}
+        <p className="sr-only">
+          The following interactive preview is visual only and is not required to
+          use Still.
+        </p>
+        <div aria-hidden="true">
+        <BrowserFrameStatic
+          frameRef={frameRef}
           data-hero-shot
-          className="flex aspect-[16/10] flex-col overflow-hidden rounded-xl border border-still-border bg-still-paper-elevated shadow-[0_1px_2px_rgba(26,26,24,0.06)]"
+          className="aspect-[16/10]"
+          isReaderOpen={isReaderOpen}
+          onToggleReader={toggleReader}
+          iconRef={iconRef}
         >
-          <BrowserChrome
-            isReaderOpen={isReaderOpen}
-            onToggleReader={toggleReader}
-            iconRef={iconRef}
-          />
-
           <div
             role="region"
             aria-label="Browser page content"
-            className="relative min-h-0 flex-1 overflow-y-auto"
+            className="relative h-full overflow-y-auto"
           >
             <div ref={clutterRef} className="absolute inset-0">
               <ClutteredPage />
@@ -184,13 +186,14 @@ export const BrowserDemo = forwardRef<BrowserDemoHandle, BrowserDemoProps>(
               />
             </div>
           </div>
-        </div>
+        </BrowserFrameStatic>
 
         <p className="mt-4 text-sm text-still-muted">
           Demo uses sample content. After install, Still works on most article
           pages. It cannot read chrome:// pages, the Web Store, PDFs, or pages
           without article content.
         </p>
+        </div>
       </div>
     )
   }

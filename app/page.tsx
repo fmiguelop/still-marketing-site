@@ -1,11 +1,14 @@
 import Link from 'next/link'
 import { HomeHero } from '@/components/home-hero'
 import { RevealSection } from '@/components/reveal-section'
+import { HomeStructuredData } from '@/components/structured-data'
 import { StillIcon } from '@/components/still-icon'
+import { faqItems } from '@/lib/faq'
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
+      <HomeStructuredData />
       <Header />
       <main>
         <HomeHero />
@@ -92,46 +95,26 @@ function HowStillWorks() {
             Common questions
           </h2>
           <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold text-still-ink">
-                Which pages work?
-              </h3>
-              <p className="mt-2 text-lg leading-relaxed text-still-muted">
-                Still works best on pages with a clear article body—news, blogs,
-                essays, and long-form posts. If the page has readable main
-                content, Still can usually extract it. It cannot read chrome://
-                pages, the Chrome Web Store, PDFs, or pages without article
-                content.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-still-ink">
-                Can I change how it looks?
-              </h3>
-              <p className="mt-2 text-lg leading-relaxed text-still-muted">
-                Yes. Open Options from the extension menu to pick light, dark, or
-                warm theme, text size, and column width. Changes apply live while
-                you read.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-still-ink">
-                Is my reading private?
-              </h3>
-              <p className="mt-2 text-lg leading-relaxed text-still-muted">
-                Article extraction runs locally in your browser. Still does not
-                send your reading to our servers. Display preferences are stored
-                on your device and may sync through Chrome if you use browser
-                sync.{' '}
-                <Link
-                  href="/privacy"
-                  className="text-still-sage underline underline-offset-2 transition-opacity hover:opacity-70"
-                >
-                  Read our privacy policy
-                </Link>
-                .
-              </p>
-            </div>
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <h3 className="font-semibold text-still-ink">{item.question}</h3>
+                <p className="mt-2 text-lg leading-relaxed text-still-muted">
+                  {item.answer}
+                  {item.question === 'Is my reading private?' && (
+                    <>
+                      {' '}
+                      <Link
+                        href="/privacy"
+                        className="text-still-sage underline underline-offset-2 transition-opacity hover:opacity-70"
+                      >
+                        Read our privacy policy
+                      </Link>
+                      .
+                    </>
+                  )}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,10 +1,16 @@
 import { SAMPLE_ARTICLE } from '@/components/browser-demo/sample-article'
 
-export function ClutteredPage() {
+type ClutteredPageProps = {
+  showSidebars?: boolean
+}
+
+export function ClutteredPage({ showSidebars = false }: ClutteredPageProps) {
+  const sidebarVisibility = showSidebars ? 'block' : 'hidden sm:block'
+
   return (
     <div className="flex min-h-full bg-[#FAFAF8]">
       <aside
-        className="hidden w-[22%] flex-shrink-0 bg-still-frame p-3 sm:block"
+        className={`${sidebarVisibility} w-[22%] flex-shrink-0 bg-still-frame p-3`}
         aria-hidden="true"
       >
         <div className="mb-4 h-4 w-16 rounded bg-still-column/20" />
@@ -22,9 +28,9 @@ export function ClutteredPage() {
 
       <div className="min-w-0 flex-1 p-4 sm:p-5">
         <article>
-          <h1 className="text-lg font-bold leading-tight text-still-ink sm:text-xl">
+          <h2 className="text-lg font-bold leading-tight text-still-ink sm:text-xl">
             {SAMPLE_ARTICLE.title}
-          </h1>
+          </h2>
           <p className="mt-1 text-xs text-still-muted sm:text-sm">
             {SAMPLE_ARTICLE.byline}
           </p>
@@ -55,7 +61,7 @@ export function ClutteredPage() {
       </div>
 
       <aside
-        className="hidden w-[18%] flex-shrink-0 border-l border-still-border p-3 lg:block"
+        className={`${showSidebars ? 'block' : 'hidden lg:block'} w-[18%] flex-shrink-0 border-l border-still-border p-3`}
         aria-hidden="true"
       >
         <div className="h-24 rounded bg-still-border/40" />

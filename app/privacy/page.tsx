@@ -1,6 +1,32 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PrivacyMarkdown } from '@/components/privacy-markdown'
+import { siteName } from '@/lib/site'
 import { readPrivacyMarkdown } from '@/lib/zen-mode'
+
+const title = 'Privacy Policy — Still'
+const description =
+  'How Still handles your data: local article extraction in Chrome, no analytics, no Still-operated servers. Reading preferences stay on your device.'
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: '/privacy',
+  },
+  openGraph: {
+    title,
+    description,
+    type: 'website',
+    url: '/privacy',
+    siteName,
+  },
+  twitter: {
+    card: 'summary',
+    title,
+    description,
+  },
+}
 
 function extractLastUpdated(markdown: string): string | null {
   const match = markdown.match(/\*\*Last updated:\*\*\s*(.+)/i)
@@ -12,7 +38,7 @@ export default function PrivacyPage() {
   const lastUpdated = extractLastUpdated(content)
 
   return (
-    <div className="min-h-screen px-[clamp(1.5rem,5vw,2rem)] py-16">
+    <main className="min-h-screen px-[clamp(1.5rem,5vw,2rem)] py-16">
       <article className="mx-auto max-w-[70ch]">
         <header className="mb-12">
           <Link
@@ -27,6 +53,6 @@ export default function PrivacyPage() {
         </header>
         <PrivacyMarkdown content={content} />
       </article>
-    </div>
+    </main>
   )
 }

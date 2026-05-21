@@ -9,6 +9,9 @@ import {
 type ReaderPanelProps = {
   onClose: () => void
   exitRef?: RefObject<HTMLButtonElement | null>
+  theme?: ReaderTheme
+  initialProgress?: number
+  interactive?: boolean
 }
 
 const THEME_OPTIONS: { value: ReaderTheme; label: string }[] = [
@@ -70,19 +73,28 @@ const THEME_STYLES: Record<
   },
 }
 
-export function ReaderPanel({ onClose, exitRef }: ReaderPanelProps) {
-  const [theme, setTheme] = useState<ReaderTheme>('light')
-  const [progress, setProgress] = useState(0)
+export function ReaderPanel({
+  onClose,
+  exitRef,
+  theme: themeProp,
+  initialProgress,
+  interactive = true,
+}: ReaderPanelProps) {
+  const [themeState, setThemeState] = useState<ReaderTheme>(themeProp ?? 'light')
+  const [scrollProgress, setScrollProgress] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const theme = themeProp ?? themeState
+  const progress = initialProgress ?? scrollProgress
   const styles = THEME_STYLES[theme]
 
   const handleScroll = useCallback(() => {
+    if (initialProgress !== undefined) return
     const el = scrollRef.current
     if (!el) return
 
     const maxScroll = el.scrollHeight - el.clientHeight
-    setProgress(maxScroll > 0 ? el.scrollTop / maxScroll : 0)
-  }, [])
+    setScrollProgress(maxScroll > 0 ? el.scrollTop / maxScroll : 0)
+  }, [initialProgress])
 
   return (
     <div className={`relative flex h-full min-h-0 flex-col ${styles.root}`}>
@@ -102,29 +114,31 @@ export function ReaderPanel({ onClose, exitRef }: ReaderPanelProps) {
         className="min-h-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6 sm:py-6"
       >
         <article className="mx-auto max-w-[70ch]">
-          <div className="mb-4 flex flex-wrap items-center gap-2">
-            {THEME_OPTIONS.map((option) => (
-              <button
-                key={option.value}
-                type="button"
-                onClick={() => setTheme(option.value)}
-                className={`rounded-md border px-2.5 py-1 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage ${
-                  theme === option.value
-                    ? `${styles.btnBg} ${styles.btnBorder} ${styles.btnLabel} border-current`
-                    : `border-transparent ${styles.muted} hover:opacity-80`
-                }`}
-                aria-pressed={theme === option.value}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
+          {interactive && (
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              {THEME_OPTIONS.map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => setThemeState(option.value)}
+                  className={`rounded-md border px-2.5 py-1 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage ${
+                    theme === option.value
+                      ? `${styles.btnBg} ${styles.btnBorder} ${styles.btnLabel} border-current`
+                      : `border-transparent ${styles.muted} hover:opacity-80`
+                  }`}
+                  aria-pressed={theme === option.value}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          )}
 
-          <h1
+          <h2
             className={`mb-1.5 text-[1.75rem] font-bold leading-tight ${styles.title}`}
           >
             {SAMPLE_ARTICLE.title}
-          </h1>
+          </h2>
           <p className={`mb-6 text-sm ${styles.muted}`}>
             {SAMPLE_ARTICLE.byline} · {SAMPLE_ARTICLE.readingTime}
           </p>
@@ -143,14 +157,22 @@ export function ReaderPanel({ onClose, exitRef }: ReaderPanelProps) {
           <p className={`text-sm ${styles.muted}`}>
             Press Esc to exit · + − to adjust text size
           </p>
-          <button
-            ref={exitRef}
-            type="button"
-            onClick={onClose}
-            className={`rounded-md border px-4 py-2 text-sm transition-colors hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage ${styles.btnBg} ${styles.btnBorder} ${styles.btnLabel}`}
-          >
-            Exit Still
-          </button>
+          {interactive ? (
+            <button
+              ref={exitRef}
+              type="button"
+              onClick={onClose}
+              className={`rounded-md border px-4 py-2 text-sm transition-colors hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage ${styles.btnBg} ${styles.btnBorder} ${styles.btnLabel}`}
+            >
+              Exit Still
+            </button>
+          ) : (
+            <div
+              className={`rounded-md border px-4 py-2 text-sm ${styles.btnBg} ${styles.btnBorder} ${styles.btnLabel}`}
+            >
+              Exit Still
+            </div>
+          )}
         </footer>
       </div>
     </div>
