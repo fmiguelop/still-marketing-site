@@ -187,12 +187,6 @@ export const BrowserDemo = forwardRef<BrowserDemoHandle, BrowserDemoProps>(
             </div>
           </div>
         </BrowserFrameStatic>
-
-        <p className="mt-4 text-sm text-still-muted">
-          Demo uses sample content. After install, Still works on most article
-          pages. It cannot read chrome:// pages, the Web Store, PDFs, or pages
-          without article content.
-        </p>
         </div>
       </div>
     )

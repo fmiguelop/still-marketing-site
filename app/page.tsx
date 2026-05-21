@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { HowItWorksIntro } from '@/components/how-it-works-intro'
 import { HomeHero } from '@/components/home-hero'
 import { RevealSection } from '@/components/reveal-section'
 import { HomeStructuredData } from '@/components/structured-data'
@@ -60,15 +61,7 @@ function HowStillWorks() {
       <div className="mx-auto max-w-[70ch] space-y-10">
         <div data-reveal-item>
           <h2 className="mb-4 text-2xl font-bold text-still-ink">How it works</h2>
-          <p className="text-lg leading-relaxed text-still-muted">
-            On any article page, click Still in your toolbar—or press{' '}
-            <kbd className="rounded border border-still-border bg-still-paper px-1.5 py-0.5 font-sans text-sm text-still-ink">
-              Alt+Shift+S
-            </kbd>{' '}
-            (Mac: Option+Shift+S). The article opens on warm paper with comfortable
-            type and no clutter. Press Esc, click Exit Still, or use the shortcut
-            again to return. While reading, use + and − to adjust text size.
-          </p>
+          <HowItWorksIntro />
         </div>
 
         <div data-reveal-item>
@@ -122,25 +115,52 @@ function HowStillWorks() {
   )
 }
 
+const privacyStripItems = [
+  {
+    label: 'Your data',
+    description:
+      "Still doesn't collect analytics, track your history, or ping any background servers. I don't know who you are or what you're reading.",
+  },
+  {
+    label: 'Accounts',
+    description:
+      'None. No logins, no passwords, no onboarding screens. Just click and read.',
+  },
+  {
+    label: 'Syncing',
+    description:
+      'If you change your theme or text size, Chrome saves those preferences to your Google profile automatically. No third-party databases involved.',
+  },
+] as const
+
 function PrivacyStrip() {
   return (
-    <RevealSection className="px-[clamp(1.5rem,5vw,2rem)] py-12 md:py-16">
-      <div className="mx-auto max-w-[70ch]">
-        <h2 className="mb-4 text-lg font-semibold text-still-ink">
-          Your reading stays yours
-        </h2>
-        <p className="text-lg leading-relaxed text-still-muted">
-          Still extracts articles locally in your browser using Mozilla
-          Readability. The extension does not use analytics or send your reading to
-          servers—no account required. Reading preferences may sync through
-          Chrome if you use browser sync. Built for readers who value attention
-          and privacy.
-        </p>
+    <RevealSection
+      stagger
+      className="px-[clamp(1.5rem,5vw,2rem)] py-12 md:py-16"
+    >
+      <div className="mx-auto max-w-[1120px]">
+        <dl className="space-y-6 md:space-y-8">
+          {privacyStripItems.map((item) => (
+            <div
+              key={item.label}
+              data-reveal-item
+              className="grid gap-2 md:grid-cols-[minmax(7rem,9rem)_1fr] md:gap-x-10"
+            >
+              <dt className="font-semibold text-still-ink">{item.label}</dt>
+              <dd className="m-0 text-lg leading-relaxed text-still-muted">
+                {item.description}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
         <Link
+          data-reveal-item
           href="/privacy"
-          className="mt-4 inline-block text-sm text-still-sage underline underline-offset-2 transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage"
+          className="mt-8 inline-block text-sm text-still-sage underline underline-offset-2 transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage md:mt-10"
         >
-          Read our privacy policy
+          → Read the privacy policy
         </Link>
       </div>
     </RevealSection>
