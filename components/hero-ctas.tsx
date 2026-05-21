@@ -26,10 +26,19 @@ const primaryButtonClass =
 const secondaryButtonClass =
   'inline-flex items-center gap-2 rounded-md border border-still-button-border bg-still-paper-elevated px-6 py-3 text-sm font-medium text-still-button-label transition-colors hover:border-still-border hover:bg-still-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage'
 
-export function HeroCtas() {
+type HeroCtasProps = {
+  align?: 'center' | 'start'
+}
+
+export function HeroCtas({ align = 'center' }: HeroCtasProps) {
+  const containerClass =
+    align === 'start'
+      ? 'mt-10 flex flex-col items-start gap-4 sm:flex-row'
+      : 'mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row'
+
   if (storeUrl) {
     return (
-      <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <div className={containerClass}>
         <a href={storeUrl} className={primaryButtonClass}>
           <ChromeIcon className="h-4 w-4" />
           Add to Chrome
@@ -43,7 +52,7 @@ export function HeroCtas() {
   }
 
   return (
-    <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+    <div className={containerClass}>
       <a href="#demo" className={primaryButtonClass}>
         <StillIcon className="h-4 w-4" />
         Try Still free
