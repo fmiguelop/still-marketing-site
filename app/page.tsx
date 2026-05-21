@@ -58,9 +58,13 @@ function HowStillWorks() {
         <div data-reveal-item>
           <h2 className="mb-4 text-2xl font-bold text-still-ink">How it works</h2>
           <p className="text-lg leading-relaxed text-still-muted">
-            On any article page, click Still in your toolbar. The article opens
-            on warm paper—comfortable type, generous spacing, no clutter. Press
-            Esc, click Exit Still, or click the icon again to return.
+            On any article page, click Still in your toolbar—or press{' '}
+            <kbd className="rounded border border-still-border bg-still-paper px-1.5 py-0.5 font-sans text-sm text-still-ink">
+              Alt+Shift+S
+            </kbd>{' '}
+            (Mac: Option+Shift+S). The article opens on warm paper with comfortable
+            type and no clutter. Press Esc, click Exit Still, or use the shortcut
+            again to return. While reading, use + and − to adjust text size.
           </p>
         </div>
 
@@ -68,16 +72,17 @@ function HowStillWorks() {
           <h2 className="mb-4 text-2xl font-bold text-still-ink">What you get</h2>
           <div className="space-y-4 text-lg leading-relaxed text-still-muted">
             <p>
-              Install once. No account, no settings—just click when you want to
-              read.
+              Install once. No account, no setup—just click when you want to read.
+              Optional preferences in Options: light, dark, or warm theme; text
+              size; and column width.
             </p>
             <p>
-              Mozilla Readability extracts the article in your browser. We
+              Mozilla Readability extracts the article in your browser. Long
+              articles show a quiet progress bar and reading time estimate. We
               don&apos;t run servers or collect your reading.
             </p>
             <p>
-              News, blogs, essays—most pages with a clear article body work
-              well.
+              News, blogs, essays—most pages with a clear article body work well.
             </p>
           </div>
         </div>
@@ -99,6 +104,34 @@ function HowStillWorks() {
                 content.
               </p>
             </div>
+            <div>
+              <h3 className="font-semibold text-still-ink">
+                Can I change how it looks?
+              </h3>
+              <p className="mt-2 text-lg leading-relaxed text-still-muted">
+                Yes. Open Options from the extension menu to pick light, dark, or
+                warm theme, text size, and column width. Changes apply live while
+                you read.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-still-ink">
+                Is my reading private?
+              </h3>
+              <p className="mt-2 text-lg leading-relaxed text-still-muted">
+                Article extraction runs locally in your browser. Still does not
+                send your reading to our servers. Display preferences are stored
+                on your device and may sync through Chrome if you use browser
+                sync.{' '}
+                <Link
+                  href="/privacy"
+                  className="text-still-sage underline underline-offset-2 transition-opacity hover:opacity-70"
+                >
+                  Read our privacy policy
+                </Link>
+                .
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -115,8 +148,9 @@ function PrivacyStrip() {
         </h2>
         <p className="text-lg leading-relaxed text-still-muted">
           Still extracts articles locally in your browser using Mozilla
-          Readability. The extension does not use analytics or send your reading
-          to servers—no account required. Built for readers who value attention
+          Readability. The extension does not use analytics or send your reading to
+          servers—no account required. Reading preferences may sync through
+          Chrome if you use browser sync. Built for readers who value attention
           and privacy.
         </p>
         <Link

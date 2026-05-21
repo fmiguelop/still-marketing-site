@@ -29,6 +29,7 @@ export const BrowserDemo = forwardRef<BrowserDemoHandle, BrowserDemoProps>(
   function BrowserDemo({ className }, ref) {
     const [isReaderOpen, setIsReaderOpen] = useState(false)
     const [hasInteracted, setHasInteracted] = useState(false)
+    const [readerKey, setReaderKey] = useState(0)
     const frameRef = useRef<HTMLDivElement>(null)
     const iconRef = useRef<HTMLButtonElement>(null)
     const exitRef = useRef<HTMLButtonElement>(null)
@@ -43,6 +44,7 @@ export const BrowserDemo = forwardRef<BrowserDemoHandle, BrowserDemoProps>(
 
     const closeReader = useCallback(() => {
       setIsReaderOpen(false)
+      setReaderKey((key) => key + 1)
     }, [])
 
     const toggleReader = useCallback(() => {
@@ -175,7 +177,11 @@ export const BrowserDemo = forwardRef<BrowserDemoHandle, BrowserDemoProps>(
               style={{ display: 'none', opacity: 0 }}
               aria-hidden={!isReaderOpen}
             >
-              <ReaderPanel onClose={closeReader} exitRef={exitRef} />
+              <ReaderPanel
+                key={readerKey}
+                onClose={closeReader}
+                exitRef={exitRef}
+              />
             </div>
           </div>
         </div>
