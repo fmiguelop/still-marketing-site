@@ -1,0 +1,105 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Still Design Tokens */
+  --still-paper: #F5F5F0;
+  --still-paper-elevated: #FAFAF5;
+  --still-ink: #1A1A18;
+  --still-muted: #6B6B66;
+  --still-border: #E0E0DB;
+  --still-sage: #5C7A6B;
+  --still-stone: #8A8478;
+  --still-frame: #1A1A1A;
+  --still-column: #F4F0E6;
+  --still-button-border: #D4D4CF;
+  --still-button-label: #444444;
+
+  /* Map to semantic tokens */
+  --background: var(--still-paper);
+  --foreground: var(--still-ink);
+  --card: var(--still-paper-elevated);
+  --card-foreground: var(--still-ink);
+  --popover: var(--still-paper-elevated);
+  --popover-foreground: var(--still-ink);
+  --primary: var(--still-ink);
+  --primary-foreground: var(--still-paper);
+  --secondary: var(--still-paper-elevated);
+  --secondary-foreground: var(--still-button-label);
+  --muted: var(--still-paper-elevated);
+  --muted-foreground: var(--still-muted);
+  --accent: var(--still-sage);
+  --accent-foreground: var(--still-paper);
+  --border: var(--still-border);
+  --input: var(--still-border);
+  --ring: var(--still-sage);
+  --radius: 6px;
+
+  /* Spacing */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+}
+
+@theme inline {
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 6px);
+
+  /* Still-specific colors */
+  --color-still-paper: var(--still-paper);
+  --color-still-paper-elevated: var(--still-paper-elevated);
+  --color-still-ink: var(--still-ink);
+  --color-still-muted: var(--still-muted);
+  --color-still-border: var(--still-border);
+  --color-still-sage: var(--still-sage);
+  --color-still-stone: var(--still-stone);
+  --color-still-frame: var(--still-frame);
+  --color-still-column: var(--still-column);
+  --color-still-button-border: var(--still-button-border);
+  --color-still-button-label: var(--still-button-label);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

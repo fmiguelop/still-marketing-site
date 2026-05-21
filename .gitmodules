@@ -1,0 +1,3 @@
+[submodule "vendor/zen-mode"]
+	path = vendor/zen-mode
+	url = REPLACE_WITH_YOUR_ZEN_MODE_GITHUB_URL

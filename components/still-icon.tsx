@@ -1,0 +1,24 @@
+export function StillIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 500 500"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect
+        x="48"
+        y="48"
+        width="416"
+        height="416"
+        rx="96"
+        ry="96"
+        fill="#1a1a1a"
+      />
+      <path
+        d="M 176,128 C 190,128 202,129.5 210,133 C 218,136.5 221,144 221,154 L 221,358 C 221,368 218,375.5 210,379 C 202,382.5 190,384 176,384 L 176,392 L 336,392 L 336,384 C 322,384 310,382.5 302,379 C 294,375.5 291,368 291,358 L 291,154 C 291,144 294,136.5 302,133 C 310,129.5 322,128 336,128 L 336,120 L 176,120 Z"
+        fill="#f4f0e6"
+      />
+    </svg>
+  )
+}
