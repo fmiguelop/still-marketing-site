@@ -28,13 +28,21 @@ const secondaryButtonClass =
 
 type HeroCtasProps = {
   align?: 'center' | 'start'
+  onTryStill?: () => void
 }
 
-export function HeroCtas({ align = 'center' }: HeroCtasProps) {
+export function HeroCtas({ align = 'center', onTryStill }: HeroCtasProps) {
   const containerClass =
     align === 'start'
       ? 'mt-10 flex flex-col items-start gap-4 sm:flex-row'
       : 'mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row'
+
+  const tryStillButton = onTryStill ? (
+    <button type="button" onClick={onTryStill} className={secondaryButtonClass}>
+      <StillIcon className="h-4 w-4" />
+      Try Still
+    </button>
+  ) : null
 
   if (storeUrl) {
     return (
@@ -43,20 +51,31 @@ export function HeroCtas({ align = 'center' }: HeroCtasProps) {
           <ChromeIcon className="h-4 w-4" />
           Add to Chrome
         </a>
-        <a href="#demo" className={secondaryButtonClass}>
-          <StillIcon className="h-4 w-4" />
-          Try Still
-        </a>
+        {onTryStill ? (
+          tryStillButton
+        ) : (
+          <span className={secondaryButtonClass}>
+            <StillIcon className="h-4 w-4" />
+            Try Still
+          </span>
+        )}
       </div>
     )
   }
 
   return (
     <div className={containerClass}>
-      <a href="#demo" className={primaryButtonClass}>
-        <StillIcon className="h-4 w-4" />
-        Try Still free
-      </a>
+      {onTryStill ? (
+        <button type="button" onClick={onTryStill} className={primaryButtonClass}>
+          <StillIcon className="h-4 w-4" />
+          Try Still free
+        </button>
+      ) : (
+        <span className={primaryButtonClass}>
+          <StillIcon className="h-4 w-4" />
+          Try Still free
+        </span>
+      )}
       <button
         type="button"
         disabled

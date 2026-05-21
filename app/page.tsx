@@ -1,7 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import { HeroCtas } from '@/components/hero-ctas'
-import { LiveDemo } from '@/components/live-demo'
+import { HomeHero } from '@/components/home-hero'
+import { RevealSection } from '@/components/reveal-section'
 import { StillIcon } from '@/components/still-icon'
 
 export default function HomePage() {
@@ -9,8 +8,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       <Header />
       <main>
-        <Hero />
-        <LiveDemo />
+        <HomeHero />
         <HowStillWorks />
         <PrivacyStrip />
       </main>
@@ -50,46 +48,14 @@ function Header() {
   )
 }
 
-function Hero() {
-  return (
-    <section className="px-[clamp(1.5rem,5vw,2rem)] py-16 md:py-24 lg:py-32">
-      <div className="mx-auto grid max-w-[1120px] items-center gap-10 md:grid-cols-2 md:gap-12">
-        <div>
-          <h1 className="max-w-[18ch] text-[clamp(2.5rem,5vw,3.5rem)] font-bold leading-[1.15] text-still-ink text-balance">
-            Quiet reading for the open web.
-          </h1>
-          <p className="mt-6 max-w-[45ch] text-lg leading-relaxed text-still-muted text-pretty">
-            Click once. Still removes ads, sidebars, and clutter—leaving the
-            article on warm paper. Nothing leaves your browser.
-          </p>
-
-          <HeroCtas align="start" />
-
-          <p className="mt-8 text-sm font-medium text-still-stone">
-            One click. Just the article.
-          </p>
-        </div>
-
-        <div className="overflow-hidden rounded-xl border border-still-border shadow-[0_1px_2px_rgba(26,26,24,0.06)]">
-          <Image
-            src="/screenshots/screenshot-01-hero.png"
-            alt="Before and after: cluttered article page compared to Still reader view"
-            width={1280}
-            height={800}
-            className="h-auto w-full"
-            priority
-          />
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function HowStillWorks() {
   return (
-    <section className="border-y border-still-border bg-still-paper-elevated px-[clamp(1.5rem,5vw,2rem)] py-16 md:py-24">
+    <RevealSection
+      stagger
+      className="border-y border-still-border bg-still-paper-elevated px-[clamp(1.5rem,5vw,2rem)] py-16 md:py-24"
+    >
       <div className="mx-auto max-w-[70ch] space-y-10">
-        <div>
+        <div data-reveal-item>
           <h2 className="mb-4 text-2xl font-bold text-still-ink">How it works</h2>
           <p className="text-lg leading-relaxed text-still-muted">
             On any article page, click Still in your toolbar. The article opens
@@ -98,7 +64,7 @@ function HowStillWorks() {
           </p>
         </div>
 
-        <div>
+        <div data-reveal-item>
           <h2 className="mb-4 text-2xl font-bold text-still-ink">What you get</h2>
           <div className="space-y-4 text-lg leading-relaxed text-still-muted">
             <p>
@@ -116,7 +82,7 @@ function HowStillWorks() {
           </div>
         </div>
 
-        <div>
+        <div data-reveal-item>
           <h2 className="mb-4 text-2xl font-bold text-still-ink">
             Common questions
           </h2>
@@ -136,13 +102,13 @@ function HowStillWorks() {
           </div>
         </div>
       </div>
-    </section>
+    </RevealSection>
   )
 }
 
 function PrivacyStrip() {
   return (
-    <section className="px-[clamp(1.5rem,5vw,2rem)] py-12 md:py-16">
+    <RevealSection className="px-[clamp(1.5rem,5vw,2rem)] py-12 md:py-16">
       <div className="mx-auto max-w-[70ch]">
         <h2 className="mb-4 text-lg font-semibold text-still-ink">
           Your reading stays yours
@@ -160,7 +126,7 @@ function PrivacyStrip() {
           Read our privacy policy
         </Link>
       </div>
-    </section>
+    </RevealSection>
   )
 }
 
