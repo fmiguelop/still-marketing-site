@@ -1,11 +1,11 @@
 import { statSync } from 'node:fs'
 import type { MetadataRoute } from 'next'
-import { getPrivacyMarkdownPath } from '@/lib/zen-mode'
+import { resolvePrivacyMarkdownPath } from '@/lib/zen-mode'
 import { siteUrl } from '@/lib/site'
 
 function privacyLastModified(): Date {
   try {
-    return statSync(getPrivacyMarkdownPath()).mtime
+    return statSync(resolvePrivacyMarkdownPath()).mtime
   } catch {
     return new Date()
   }

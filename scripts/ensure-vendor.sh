@@ -8,6 +8,8 @@ if [ -f "vendor/zen-mode/docs/PRIVACY.md" ]; then
   SRC="vendor/zen-mode/docs/PRIVACY.md"
 elif [ -n "${STILL_ZEN_MODE_PATH:-}" ] && [ -f "${STILL_ZEN_MODE_PATH}/docs/PRIVACY.md" ]; then
   SRC="${STILL_ZEN_MODE_PATH}/docs/PRIVACY.md"
+elif [ -f "../zen-mode/docs/PRIVACY.md" ]; then
+  SRC="../zen-mode/docs/PRIVACY.md"
 fi
 
 if [ -z "$SRC" ]; then

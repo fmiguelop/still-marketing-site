@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "predev": "sh scripts/ensure-vendor.sh",
     "prebuild": "sh scripts/ensure-vendor.sh",
     "build": "next build",
     "start": "next start",

@@ -47,9 +47,6 @@ export default function PrivacyPage() {
           >
             ← Back to Still
           </Link>
-          {lastUpdated && (
-            <p className="mb-2 text-still-muted">Last updated: {lastUpdated}</p>
-          )}
         </header>
         <PrivacyMarkdown content={content} />
       </article>
