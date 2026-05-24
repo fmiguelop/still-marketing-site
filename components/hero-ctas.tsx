@@ -47,10 +47,10 @@ export function HeroCtas({ align = 'center', onTryStill }: HeroCtasProps) {
         {onTryStill ? (
           tryStillButton
         ) : (
-          <span className={secondaryButtonClass} {...tryStillA11yProps}>
+          <button type="button" onClick={onTryStill} className={secondaryButtonClass} {...tryStillA11yProps}>
             <StillIcon className="h-4 w-4" />
             Try Still
-          </span>
+          </button>
         )}
       </div>
     )
@@ -76,12 +76,11 @@ export function HeroCtas({ align = 'center', onTryStill }: HeroCtasProps) {
       )}
       <button
         type="button"
-        disabled
         aria-disabled="true"
-        className="inline-flex cursor-not-allowed items-center gap-2 rounded-md border border-still-border bg-still-paper px-6 py-3 text-sm font-medium text-still-muted opacity-70"
+        className="inline-flex items-center gap-2 rounded-md border border-still-border bg-still-paper px-6 py-3 text-sm font-medium text-still-muted opacity-70"
       >
-        <Puzzle className="h-4 w-4" aria-hidden />
-        Add to Chrome — Coming soon
+        <Puzzle className="h-4 w-4" />
+        Add to Chrome
       </button>
     </div>
   )
