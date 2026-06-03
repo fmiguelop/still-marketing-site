@@ -143,13 +143,13 @@ export function ReaderPanel({
               onClick={onClose}
               className={`rounded-md border px-4 py-2 text-sm transition-colors hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage ${styles.btnBg} ${styles.btnBorder} ${styles.btnLabel}`}
             >
-              Exit Still
+              Exit
             </button>
           ) : (
             <div
               className={`rounded-md border px-4 py-2 text-sm ${styles.btnBg} ${styles.btnBorder} ${styles.btnLabel}`}
             >
-              Exit Still
+              Exit
             </div>
           )}
         </footer>
