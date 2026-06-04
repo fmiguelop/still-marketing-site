@@ -26,7 +26,7 @@ pnpm install
 pnpm dev
 ```
 
-The `prebuild` script copies `vendor/zen-mode/docs/PRIVACY.md` into `content/synced/privacy.md`. For local dev without a submodule, set `STILL_ZEN_MODE_PATH` to your zen-mode clone (see `.env.example`).
+The `prebuild` script copies `vendor/zen-mode/docs/PRIVACY.md` and `docs/CHANGELOG.md` into `content/synced/`. For local dev without a submodule, set `STILL_ZEN_MODE_PATH` to your zen-mode clone (see `.env.example`).
 
 ## Environment variables
 
@@ -44,6 +44,10 @@ The `prebuild` script copies `vendor/zen-mode/docs/PRIVACY.md` into `content/syn
 ## Privacy policy
 
 `/privacy` renders [`vendor/zen-mode/docs/PRIVACY.md`](vendor/zen-mode/docs/PRIVACY.md) at build time. Update privacy in the extension repo, then run `git submodule update --remote` in this repo and redeploy.
+
+## Changelog
+
+`/changelog` renders [`vendor/zen-mode/docs/CHANGELOG.md`](vendor/zen-mode/docs/CHANGELOG.md) at build time. Update release notes in the extension repo, bump the submodule pointer, and redeploy.
 
 ## Related repos
 

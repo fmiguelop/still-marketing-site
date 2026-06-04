@@ -1,11 +1,11 @@
 import { statSync } from 'node:fs'
 import type { MetadataRoute } from 'next'
-import { resolvePrivacyMarkdownPath } from '@/lib/zen-mode'
+import { resolveChangelogMarkdownPath, resolvePrivacyMarkdownPath } from '@/lib/zen-mode'
 import { siteUrl } from '@/lib/site'
 
-function privacyLastModified(): Date {
+function fileLastModified(resolvePath: () => string): Date {
   try {
-    return statSync(resolvePrivacyMarkdownPath()).mtime
+    return statSync(resolvePath()).mtime
   } catch {
     return new Date()
   }
@@ -21,9 +21,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteUrl}/privacy`,
-      lastModified: privacyLastModified(),
+      lastModified: fileLastModified(resolvePrivacyMarkdownPath),
       changeFrequency: 'yearly',
       priority: 0.5,
+    },
+    {
+      url: `${siteUrl}/changelog`,
+      lastModified: fileLastModified(resolveChangelogMarkdownPath),
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
   ]
 }

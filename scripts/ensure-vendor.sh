@@ -1,19 +1,30 @@
 #!/usr/bin/env sh
 set -eu
 
-DEST="content/synced/privacy.md"
-SRC=""
+resolve_vendor_root() {
+  if [ -f "vendor/zen-mode/docs/PRIVACY.md" ]; then
+    printf '%s' "vendor/zen-mode"
+    return 0
+  fi
 
-if [ -f "vendor/zen-mode/docs/PRIVACY.md" ]; then
-  SRC="vendor/zen-mode/docs/PRIVACY.md"
-elif [ -n "${STILL_ZEN_MODE_PATH:-}" ] && [ -f "${STILL_ZEN_MODE_PATH}/docs/PRIVACY.md" ]; then
-  SRC="${STILL_ZEN_MODE_PATH}/docs/PRIVACY.md"
-elif [ -f "../zen-mode/docs/PRIVACY.md" ]; then
-  SRC="../zen-mode/docs/PRIVACY.md"
-fi
+  if [ -n "${STILL_ZEN_MODE_PATH:-}" ] && [ -f "${STILL_ZEN_MODE_PATH}/docs/PRIVACY.md" ]; then
+    printf '%s' "${STILL_ZEN_MODE_PATH}"
+    return 0
+  fi
 
-if [ -z "$SRC" ]; then
-  echo "error: could not find docs/PRIVACY.md." >&2
+  if [ -f "../zen-mode/docs/PRIVACY.md" ]; then
+    printf '%s' "../zen-mode"
+    return 0
+  fi
+
+  return 1
+}
+
+VENDOR_ROOT=""
+if VENDOR_ROOT="$(resolve_vendor_root)"; then
+  :
+else
+  echo "error: could not find zen-mode docs (PRIVACY.md)." >&2
   echo "" >&2
   echo "Initialize the zen-mode submodule:" >&2
   echo "  git submodule update --init --recursive" >&2
@@ -24,5 +35,16 @@ if [ -z "$SRC" ]; then
 fi
 
 mkdir -p content/synced
-cp "$SRC" "$DEST"
-echo "Synced privacy policy from $SRC"
+
+for doc in PRIVACY CHANGELOG; do
+  SRC="${VENDOR_ROOT}/docs/${doc}.md"
+  DEST="content/synced/$(echo "$doc" | tr '[:upper:]' '[:lower:]').md"
+
+  if [ ! -f "$SRC" ]; then
+    echo "error: missing $SRC" >&2
+    exit 1
+  fi
+
+  cp "$SRC" "$DEST"
+  echo "Synced ${doc} from $SRC"
+done

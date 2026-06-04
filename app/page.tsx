@@ -77,7 +77,7 @@ function HowStillWorks() {
           </h2>
           <div className="space-y-6 text-lg leading-relaxed text-still-muted md:space-y-7">
             <p>
-              Install once. No account, no setup—just click when you want to read.
+              Install once. No account, no setup just click when you want to read.
               Optional preferences in Options: light, dark, or warm theme; text
               size; and column width.
             </p>
@@ -87,7 +87,7 @@ function HowStillWorks() {
               don&apos;t run servers or collect your reading.
             </p>
             <p>
-              News, blogs, essays—most pages with a clear article body work well.
+              News, blogs, essays. Most pages with a clear article body work well.
             </p>
           </div>
         </div>
@@ -190,6 +190,12 @@ function Footer() {
         <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
           <p className="text-sm text-still-muted">© Still</p>
           <nav className="flex items-center gap-6">
+            <a
+              href="/changelog"
+              className="text-sm text-still-sage underline decoration-still-sage/50 underline-offset-2 transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage"
+            >
+              Changelog
+            </a>
             <a
               href="/privacy"
               className="text-sm text-still-sage underline decoration-still-sage/50 underline-offset-2 transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-still-sage"
