@@ -12,7 +12,7 @@ export const faqItems: FaqItem[] = [
   {
     question: 'Can I change how it looks?',
     answer:
-      'Yes. Change light, dark, or warm theme, text size, and column width from the reader dock while you read, or set defaults in Options from the extension menu. Changes apply live.',
+      'Yes. From the reader dock or Options you can choose system, light, dark, or warm theme; Inter, Atkinson Hyperlegible, or your system font; text size, column width, and line height; high contrast; underline links; hide images; reduce motion; keep the dock visible; and optionally enter fullscreen when Still opens. Changes apply live.',
   },
   {
     question: 'Which languages does Still support?',

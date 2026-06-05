@@ -66,12 +66,12 @@ export function HeroCtas({ align = 'center', onTryStill }: HeroCtasProps) {
           {...tryStillA11yProps}
         >
           <StillIcon className="h-4 w-4" />
-          Try Still free
+          Try Still
         </button>
       ) : (
         <span className={primaryButtonClass} {...tryStillA11yProps}>
           <StillIcon className="h-4 w-4" />
-          Try Still free
+          Try Still
         </span>
       )}
       <button

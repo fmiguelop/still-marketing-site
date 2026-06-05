@@ -77,9 +77,11 @@ function HowStillWorks() {
           </h2>
           <div className="space-y-6 text-lg leading-relaxed text-still-muted md:space-y-7">
             <p>
-              Install once. No account, no setup just click when you want to read.
-              Optional preferences in Options: light, dark, or warm theme; text
-              size; and column width.
+              Install once. No account, no setup—just click when you want to read.
+              Tune appearance and reading from the dock or Options: system, light,
+              dark, or warm theme; Inter, Atkinson, or system font; text size,
+              column width, and line height; high contrast; underline links; hide
+              images; keep the dock visible; optional fullscreen when Still opens.
             </p>
             <p>
               Mozilla Readability extracts the article in your browser. Long

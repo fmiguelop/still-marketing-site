@@ -11,7 +11,7 @@ const inter = Inter({
 
 const title = 'Still — Quiet reading for the open web'
 const description =
-  'Still is a Chrome reader mode extension: one click strips articles to distraction-free text on warm paper. Local extraction—no account, no tracking.'
+  'Still is a Chrome reader mode extension: one click strips articles to distraction-free text with local extraction. Customize theme, fonts, and reading comfort—no account, no tracking.'
 
 const ogImage = {
   url: '/og.png',

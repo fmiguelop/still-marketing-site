@@ -9,15 +9,15 @@ export function HowItWorksIntro() {
         <StillOpenShortcut />.
       </p>
       <p>
-        The article opens on warm paper with comfortable type and no clutter.
+        The article opens in a calm reader overlay—comfortable type, no clutter.
       </p>
       <p>
         Press <Kbd>Esc</Kbd>, click Exit, or use the shortcut again to return.
       </p>
       <p>While reading, use <Kbd>+</Kbd> and <Kbd>−</Kbd> to adjust text size.</p>
       <p>
-        Open settings from the dock to change theme, text size, and column
-        width or set defaults in Options.
+        Open settings from the dock to adjust theme, font, text size, column
+        width, line height, and accessibility options—or set defaults in Options.
       </p>
     </div>
   )

@@ -11,7 +11,7 @@ export function HomeStructuredData() {
     applicationCategory: 'BrowserApplication',
     operatingSystem: 'Chrome',
     description:
-      'Quiet reading for the open web. Strip articles to distraction-free text in one click with local extraction.',
+      'Quiet reading for the open web. Strip articles to distraction-free text in one click with local extraction and customizable reading preferences.',
     url: siteUrl,
   }
 
