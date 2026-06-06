@@ -133,7 +133,7 @@ const privacyStripItems = [
   {
     label: 'Your data',
     description:
-      "Still doesn't collect analytics, track your history, or ping any background servers. I don't know who you are or what you're reading.",
+      "Still doesn't collect analytics, track your history, or read pages until you click it. Article extraction runs on your device — I don't know who you are or what you're reading.",
   },
   {
     label: 'Accounts',
